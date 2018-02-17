@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_putchar.c"
-#include "rush03.c"
+#include "rush04.c"
 
 int	main(void)
 {
