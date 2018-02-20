@@ -1,5 +1,5 @@
 #include <unistd.h>
-
+#include <stdio.h>
 #include "ex05/ft_strcapitalize.c"
 
 void putnbr(int e);
@@ -40,8 +40,8 @@ void putnbr(int e){
 void test()
 {
 	//putstr("Source string: ");
-	char *str = "salut, comment tu vas ? 42mots quarante-deux; cinquante+et+un";
-	int len = str_len(str);
+	char *str = malloc(100);
+	scanf("%s", str);
 	//putstr(str);
 	//put_char('\n');
 	//putstr("Source length: ");
