@@ -1,4 +1,4 @@
 kinit wgourley@42.FR
 git add *
 git commit -m "ey makeryna"
-git push
+git push --all
