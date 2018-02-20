@@ -1,11 +1,13 @@
 #include <unistd.h>
 #include <stdio.h>
-#include "ex10/ft_str_is_lowercase.c"
+#include "ex13/ft_strcat.c"
 
 int main(){
-	char *str1 = "ASDFGHlKL";
-	char *str2 = "asdfghjkl";
-
-	printf("%i\n", ft_str_is_lowercase(str1));
-	printf("%i\n", ft_str_is_lowercase(str2));
+	char *str1 = "Hey fucker!";
+	char *str2 = malloc(50);
+	str2 = "Bitch, ";
+	printf("~%s\n", str2);
+	ft_strcat(str2, str1);
+	printf("%s\n", str1); 
+	printf("%s\n", str2);
 }

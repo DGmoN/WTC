@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 11:14:48 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/20 12:11:44 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/20 12:25:47 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/20 12:58:28 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_str_is_uppercase(char *str);
-int		is_char_alpha(char e);
+char	*ft_strcat(char *dest, char *src);
 
-int		is_char_alpha(char e)
+char	*ft_strcat(char *dest, char *src)
 {
-	return (e >= 'A' && e <= 'Z');
-}
+	int index;
+	int offset;
 
-int		ft_str_is_uppercase(char *str)
-{
-	int count;
-	int res;
-
-	count = 0;
-	while (str[count] != 0)
+	index = 0;
+	while (dest[index] != 0)
+		index++;
+	offset = index;
+	index = 0;
+	while (src[index] != 0)
 	{
-		if (is_char_alpha(str[count]) != 0)
-		{
-			return (0);
-		}
-		count++;
+		dest[offset + index] = src[index];
+		index++;
 	}
-	return (1);
+	dest[index + offset] = 0;
+	return (dest);
 }
