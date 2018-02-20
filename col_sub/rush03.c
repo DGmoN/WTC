@@ -24,7 +24,7 @@ void	rush(int x, int y)
 	{
 		vline = 0;
 		while (vline < x)
-		{
+		{/goinfre/wgourley/Desktop/WTC_/col_sub/rush01.c
 			ft_logic(x, y, vline, hline);
 			vline++;
 		}
