@@ -6,10 +6,13 @@
 #    By: wgourley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 13:42:53 by wgourley          #+#    #+#              #
-#    Updated: 2018/02/20 14:49:10 by wgourley         ###   ########.fr        #
+#    Updated: 2018/02/20 17:14:42 by wgourley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-gcc -c *.c
-ar cr libft.a *.o
+for file in *.c; do
+	gcc -Wall -c  $file 
+done
+for file in *.o; do
+	ar src $file
+done
 rm *.o

@@ -6,14 +6,12 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:06:47 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/20 15:12:12 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:12:29 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.a"
-
-int		main(int args, char **strs)
+int		main(int argc, char **argv)
 {
-	ft_putstr(strs[0]);
+	ft_putstr(argv[0]);
 	return (0);
 }
