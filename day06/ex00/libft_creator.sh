@@ -13,6 +13,10 @@ for file in *.c; do
 	gcc -Wall -c  $file 
 done
 for file in *.o; do
+<<<<<<< HEAD
 	ar src $file "libft"
+=======
+	ar src $file
+>>>>>>> 9122d558c5726f72ddb16ddaef04ac9fff0a7376
 done
 rm *.o

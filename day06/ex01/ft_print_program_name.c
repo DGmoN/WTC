@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 void	ft_putstr(char *str);
 
+=======
+>>>>>>> 9122d558c5726f72ddb16ddaef04ac9fff0a7376
 int		main(int argc, char **argv)
 {
 	ft_putstr(argv[0]);
