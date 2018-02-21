@@ -6,15 +6,12 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 15:06:47 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/20 17:12:29 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/02/21 07:57:09 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-<<<<<<< HEAD
 void	ft_putstr(char *str);
 
-=======
->>>>>>> 9122d558c5726f72ddb16ddaef04ac9fff0a7376
 int		main(int argc, char **argv)
 {
 	ft_putstr(argv[0]);
