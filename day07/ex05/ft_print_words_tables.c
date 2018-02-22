@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_print_words_tables.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 07:24:00 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/22 07:24:43 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/22 08:00:03 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/22 08:08:47 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+void	ft_putchar(char e);
 
-int		ft_ultimate_range(int **range, int min, int max)
+void	fut_putstr(char *e)
 {
-	int	delta;
-	int	*ints;
-	int	index;
+	int c;
 
-	delta = max - min;
-	*range = NULL;
-	if (delta <= 0)
-		return (0);
-	index = 0;
-	ints = (int *)malloc(delta * sizeof(int));
-	while (index < delta)
+	c = 0;
+	while (e[c] != 0)
 	{
-		ints[index] = index + delta;
-		index++;
+		ft_putchar(e[c]);
+		c++;
 	}
-	*range = ints;
-	return (delta);
+}
+
+void	ft_print_words_tables(char **table)
+{
+	int c;
+
+	c = 0;
+	while (table[c] != 0)
+	{
+		fut_putstr(table[c]);
+		ft_putchar('\n');
+		c++;
+	}
 }

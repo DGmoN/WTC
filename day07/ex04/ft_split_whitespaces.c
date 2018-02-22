@@ -1,17 +1,28 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/22 07:29:04 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/22 07:49:25 by wgourley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include <stdlib.h>
 
 unsigned	int	is_whitespace_char(char e)
 {
 	return (e == '\t' || e == ' ' || e == '\n');
 }
 
-int		count_word(char *str)
+int				count_word(char *str)
 {
-	int last_was_space;
-	int count;
-	int index;
-	
+	int	last_was_space;
+	int	count;
+	int	index;
+
 	index = 0;
 	count = 1;
 	while (str[index] != 0)
@@ -29,13 +40,13 @@ int		count_word(char *str)
 	return (count);
 }
 
-char	*extract_word(char *str, int start, int len)
+char			*extract_word(char *str, int start, int len)
 {
-	int 	count;
+	int		count;
 	char	*ret;
-	
+
 	count = 0;
-	ret =(char *)malloc(sizeof(ret) * (len + 1));
+	ret = (char *)malloc(sizeof(ret) * (len + 1));
 	while (count < len)
 	{
 		ret[count] = str[start + count];
@@ -44,14 +55,14 @@ char	*extract_word(char *str, int start, int len)
 	ret[count] = 0;
 	return (ret);
 }
-// Moves the offset to the first encountered character and returns the length of the word
-int		next_space(char *str, int *offset)
+
+int				next_space(char *str, int *offset)
 {
 	int index;
 	int found_char;
 	int off;
 	int	word_len;
-	
+
 	found_char = 0;
 	word_len = 0;
 	off = *offset;
@@ -62,7 +73,7 @@ int		next_space(char *str, int *offset)
 			found_char = 1;
 		if (is_whitespace_char(str[index]))
 			if (found_char)
-				break;
+				break ;
 			else
 				off++;
 		if (found_char)
@@ -73,14 +84,14 @@ int		next_space(char *str, int *offset)
 	return (word_len);
 }
 
-char	**ft_split_whitespaces(char *str)
+char			**ft_split_whitespaces(char *str)
 {
 	int		wordcount;
 	int		last_index;
 	int		word_length;
 	char	**holder;
 	int		word;
-	
+
 	wordcount = count_word(str);
 	last_index = 0;
 	word = 0;
