@@ -1,9 +1,9 @@
+#include <stdio.h>
 
-void	ft_takes_place(int hour);
+unsigned    int ft_collatz_conjecture(unsigned int base);
 
-int main()
+int main(int q, char **e)
 {
-	int x = 0;
-	while (x++ < 25)
-		ft_takes_place(x);
+	int i = ft_collatz_conjecture(12);
+	printf("%i", i);
 }
