@@ -76,7 +76,7 @@ int		count_words_by_delimset(char *str, char *delims)
 				count++;
 			escape = 0;
 		}
-		e++;
+		e++;/goinfre/wgourley/Desktop/WTC/day07/ex06/ft_convert_base.c
 	}
 	return (count + 1);
 }
