@@ -1,0 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_decrypt.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/23 06:33:38 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/23 07:57:25 by wgourley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_perso.h"
+#include <stdlib.h>
+
+int			count_peeps(char *e)
+{
+	int count;
+	int ret;
+
+	count = 0;
+	ret = 0;
+	while (e[count])
+	{
+		if (e[count] == ';')
+			ret++;
+		count++;
+	}
+}
+
+char	*pull_from(char *e, int start, int len)
+{
+	int 	index;
+	char	*ret;
+	printf("licing\n")
+	ret = (char *)malloc(sizeof(ret) * len);
+	index = start;
+	while(index < start + len)
+	{
+		ret[index - start] = e[index];
+		index++;
+	}
+	return (ret);
+}
+
+char		**break_peeps(char *str, int words)
+{
+	char	**ret;
+	int		index;
+	char	*hold;
+	int		offset;
+	int		word;
+
+	ret = (char**)malloc(sizeof(ret) * words);
+	index = 0;
+	offset = 0;
+	word = 0;
+	while (str[index])
+	{
+		if	(str[index] == ';')
+			printf("Pullinf\n");
+		{
+			ret[word] = pull_from(str, offset, index - offset);
+			offset = index;
+			word++;
+		}
+		index++;
+	}
+	return (ret);
+}
+
+t_perso	make_peeep(char *word)
+{
+	int		index;
+	char	*age;
+	char	*nom;
+	int		reading;
+	
+	index = 0;
+}
+
+t_perso	*ft_decrypt(char *str)
+{
+	t_perso	*ret;
+	int 		words;
+	int			index;
+
+	words = count_peeps(str);
+	ret = (t_perso*)malloc(sizeof(ret) * words);
+	index = 0;
+}
+

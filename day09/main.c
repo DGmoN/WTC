@@ -1,9 +1,14 @@
 #include <stdio.h>
 
-unsigned    int ft_collatz_conjecture(unsigned int base);
+char        **break_peeps(char *str, int words,char e);
 
-int main(int q, char **e)
+int main()
 {
-	int i = ft_collatz_conjecture(12);
-	printf("%i", i);
+	char *str = "Age|notage;AAGE|ntage";
+	char **peeps = break_peeps(str, 2, '|');
+
+	for(int i =0; i < 2; i++)
+		printf("%s\n", peeps[i]);
+
 }
+

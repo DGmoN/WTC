@@ -1,0 +1,6 @@
+find $1 -name ".ft*" -delete -print
+find "$1/" -name ".f*" -delete -print
+find "../$1/" -name "ex*/" -delete -print
+cp -R "$1"/ex* ../"$1/"
+cd ../"$1"
+sh ../WTC/util/push $2

@@ -1,3 +1,4 @@
+find . -name ".f*" -delete -print
 kinit wgourley@42.FR
 git add *
 git commit -m "$1"
