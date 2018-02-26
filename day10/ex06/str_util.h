@@ -15,7 +15,7 @@
 
 int		is_numeric(char *e);
 int		is_char_in_str(char e, char *comp);
-int		str_to_num(char *e, int base);
+int		str_to_num(char *e, int base, int *put);
 int		str_len(char *e);
 
 #endif

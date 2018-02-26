@@ -16,4 +16,5 @@
 void	put_char(char e);
 void	put_str(char *e);
 void	put_line(char *e);
+void	put_number(int num, int base);
 #endif

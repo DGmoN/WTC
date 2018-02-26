@@ -13,6 +13,7 @@
 #include "num_util.h"
 #include "str_util.h"
 
+
 int		is_numericb(char *e)
 {
 	int index;
@@ -30,7 +31,6 @@ int		is_numericb(char *e)
 
 int		is_char_in_str(char e, char *comp)
 {
-	int ret;
 	int index;
 
 	index = 0;
@@ -43,23 +43,35 @@ int		is_char_in_str(char e, char *comp)
 	return (-1);
 }
 
-int	str_to_num(char *e, int base)
+int	str_to_num(char *e, int base, int *set)
 {
 	int len;
 	int index;
 	int ret;
 	int rnum;
+	int neg;
 
 	index = 0;
 	ret = 0;
-	len = str_len(e);
+	len = str_len(e) - 1;
+	neg = 1;
 	while (e[index])
 	{
-		rnum = e[index] - '0';
-		ret += (base * ((len - index) * power(base, len - index)));
+		if(index == 0 && e[index] == '-')
+		{
+			neg = -1;
+		}
+		else
+		{
+			if (!is_number_char(e[index], base))
+				return (0);
+			rnum = e[index] - '0';
+			ret += (rnum * power(base, len - index));
+		}
 		index++;
 	}
-	return (ret);
+	*set = ret * neg;
+	return (1);
 }
 
 int	str_len(char *e)

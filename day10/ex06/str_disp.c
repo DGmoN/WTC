@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "num_util.h"
 
 void	put_char(char e)
 {
@@ -32,3 +33,30 @@ void	put_line(char *e)
 	put_char('\n');
 }
 
+void	put_number(int num, int base)
+{
+	int index;
+	int len;
+	int ch;
+	int holder;
+	int pow;
+	
+	len = digits_in_num(num, base);
+	index = 0;
+	holder = num;
+	while (index < len)
+	{
+		if (holder < 0)
+		{
+			put_char('-');
+			holder *= -1;
+			index = 0;
+		}
+		pow = power(base, (len - index - 1));
+		ch = holder / pow;
+		holder = holder % pow;
+		put_char(ch + '0');
+		index++;
+	}
+	
+}

@@ -13,6 +13,10 @@
 #ifndef NUM_UTIL_H
 # define NUM_UTIL_H
 
+
+
 int	power(int base, int to);
+int	digits_in_num(int num, int base);
+int	is_number_char(char e, int expected_base);
 
 #endif
