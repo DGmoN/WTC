@@ -1,3 +1,5 @@
+find . -name ".DS*" -delete -print
+find . -name "*.swp" -delete -print
 find $1 -name ".ft*" -delete -print
 find "$1/" -name ".f*" -delete -print
 find "../$1/" -name "ex*/" -delete -print
