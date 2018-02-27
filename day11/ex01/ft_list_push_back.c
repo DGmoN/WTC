@@ -17,9 +17,13 @@ t_list	*ft_create_elem(void *data);
 void	ft_list_push_back(t_list **list, void *data)
 {
 	t_list * temp;
-	tmp = malloc(sizeof(t_list));
+	t_list * str;	
+	temp = ft_create_elem(data);
+	str = *list;
 	if (temp)
 	{
+		while (str->next)
+			str = str->next;
+		str->next = temp;
 	}
-	return (temp);
 }
