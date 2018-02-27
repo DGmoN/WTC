@@ -6,7 +6,7 @@
 #    By: wgourley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/26 08:39:19 by wgourley          #+#    #+#              #
-#    Updated: 2018/02/26 15:16:40 by wgourley         ###   ########.fr        #
+#    Updated: 2018/02/27 09:24:47 by wgourley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCDIR = '.'
 OUTDIR = ".o"
 SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
  
-mk: $(SRC) $(OUTDIR)
+all: $(SRC) $(OUTDIR)
 	$(GCC) -c $(SRC) -Wall -Wextra -Werror
 	@echo "Made Files:"
 	@ls -la *.o
@@ -37,4 +37,4 @@ fclean: clean
 	@rm -f libft.a
 	@echo "Librairy removed"
 
-re: fclean mk
+re: fclean all

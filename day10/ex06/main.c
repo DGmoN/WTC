@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 14:27:12 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/26 15:41:40 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/02/27 09:56:36 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 #include "ops.h"
 #include "num_util.h"
 
-int big_error(void)
+int	big_error(void)
 {
 	put_number(0, 10);
 	return (0);
 }
-
 
 int	main(int argn, char **args)
 {
 	int		num1;
 	int		num2;
 	char	opperator;
-	int (*opp) (int a, int b);
+	int		(*opp)	(int a, int b);
 	int		temp;
-	
+
 	if (argn - 1 < 3)
 		return (0);
 	if (str_len(args[2]) != 1)

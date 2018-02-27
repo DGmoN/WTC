@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_arr.h                                          :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 09:56:51 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:56:55 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/27 12:46:59 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/27 12:53:11 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUM_ARR_H
-# define NUM_ARR_H
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-int	get_num_index(int *arr, int e, int len);
+typedef	struct	s_list
+{
+	void *data;
+}				t_list;
 
 #endif

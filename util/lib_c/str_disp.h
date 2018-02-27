@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_arr.h                                          :+:      :+:    :+:   */
+/*   str_disp.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 09:56:51 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:56:55 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/26 14:49:26 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/26 14:52:27 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUM_ARR_H
-# define NUM_ARR_H
+#ifndef STR_DISP_H
+# define STR_DISP_H
 
-int	get_num_index(int *arr, int e, int len);
-
+void	put_char(char e);
+void	put_str(char *e);
+void	put_line(char *e);
+void	put_number(int num, int base);
 #endif

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_arr.h                                          :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 09:56:51 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:56:55 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/27 12:53:44 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/27 14:32:29 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUM_ARR_H
-# define NUM_ARR_H
+#include "ft_list.h"
 
-int	get_num_index(int *arr, int e, int len);
-
-#endif
+t_list	*ft_create_elem(void *data)
+{
+	t_list *ret;
+	
+	ret = malloc(sizeof(t_list));
+	if (ret)
+	{
+		ret->data = data;
+		ret->next = 0;
+	}
+	return (ret);
+}

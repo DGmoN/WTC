@@ -1,0 +1,3 @@
+DIR=$(pwd)
+alias norm='sh $DIR/util/norm'
+alias migrate='sh $DIR/util/migrate'
