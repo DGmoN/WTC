@@ -1,3 +1,4 @@
 DIR=$(pwd)
-alias norm='sh $DIR/util/norm'
-alias migrate='sh $DIR/util/migrate'
+alias norm='sh "$DIR/util/norm"'
+alias migrate='sh "$DIR/util/migrate"'
+alias push='sh "$DIR/util/push"'
