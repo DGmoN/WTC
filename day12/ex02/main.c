@@ -49,7 +49,7 @@ int	main(int argc, char **args)
 		file = open(args[index + 1], O_RDONLY);
 		if (file)
 		{
-			read(file, buffer, buffersize);
+			read(file, buffer, (buffersize * sizeof(char * )));
 			write(1, buffer, buffersize);
 		}
 		index++;
