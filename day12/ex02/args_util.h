@@ -15,8 +15,9 @@
 
 
 #include "str_util.h"
+#include "arg_parsing.h"
 
-int		find_index_of_arg(char **args, int len, char *argtext);
-int		parse_num_arg(int len, char **args, char *flag, int base);
+int	populate_arg_flag(char **args, int len, t_arg_flag *flag);
+int	is_flag(char *e);
 
 #endif
