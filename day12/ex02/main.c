@@ -26,32 +26,50 @@ int buffer_overflow_error()
 	return (0);
 }
 
+void	clean(char *e, int len)
+{
+	int count;
+	
+	count = 0;
+	while (count < len)
+	{
+		e[count] = 0;
+		count++;
+	}
+}
+
+void print_file(char *name, int buffer_size)
+{
+	int		file;
+	char	*buffer;
+	int		red;
+
+	file = open(name, O_RDONLY);
+	if (file == -1)
+		return ;
+	buffer = (char *)malloc(sizeof(char) * buffer_size);
+	red = read(file, buffer, buffer_size);
+	write(1, buffer, red);
+	free(buffer);
+}
 
 int	main(int argc, char **args)
 {
-	int file;
 	int buffersize;
 	t_arg_flag count_flag;
-	char *buffer;
 	int index;
 	
 	if (argc - 1 < 1)
 		return (no_args_error());
-	index = 0;
+	index = 1;
 	count_flag = create_flag(1, "-c");
 	populate_arg_flag(args, argc, &count_flag);
 	if (!str_to_num(count_flag.param_data[0], 10, &buffersize))
 		return (wrong_arg_format());
-	put_number(buffersize, 10);
-	buffer = (char *)malloc(sizeof(char) * buffersize);
-	while (index < argc - 1)
+	while (index < argc)
 	{
-		file = open(args[index + 1], O_RDONLY);
-		if (file)
-		{
-			read(file, buffer, (buffersize * sizeof(char * )));
-			write(1, buffer, buffersize);
-		}
+		
+		print_file(args[index], buffersize);
 		index++;
 	}
 	return (0);
