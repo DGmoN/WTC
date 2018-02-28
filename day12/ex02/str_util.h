@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   str_util.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/28 11:33:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/28 12:38:44 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/25 13:30:57 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/28 15:29:53 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#ifndef STR_UTIL_H
+# define STR_UTIL_H
 
-void	ft_list_push_front(t_list **list, void *data)
-{
-	t_list *temp;
-	t_list *str;
+int		is_numeric(char *e);
+int		is_char_in_str(char e, char *comp);
+int		str_to_num(char *e, int base, int *put);
+int		str_len(char *e);
+int	str_cmp(char *a, char *b);
 
-	temp = ft_create_elem(data);
-	str = *list;
-	if (temp)
-	{
-		temp->next = str;
-	}
-}
+
+#endif

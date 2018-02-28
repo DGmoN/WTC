@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   str_disp.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/28 11:33:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/28 12:38:44 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/26 14:49:26 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/28 14:49:05 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#ifndef STR_DISP_H
+# define STR_DISP_H
 
-void	ft_list_push_front(t_list **list, void *data)
-{
-	t_list *temp;
-	t_list *str;
-
-	temp = ft_create_elem(data);
-	str = *list;
-	if (temp)
-	{
-		temp->next = str;
-	}
-}
+void	put_char(char e);
+void	put_str(char *e);
+void	put_line(char *e);
+void	put_number(int num, int base);
+void	put_nline(char *e, int lim);
+#endif

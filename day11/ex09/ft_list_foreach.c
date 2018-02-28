@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   ft_list_foreach.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/28 11:33:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/28 12:38:44 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/28 12:11:05 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/28 12:45:32 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_list_push_front(t_list **list, void *data)
+void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	t_list *temp;
-	t_list *str;
+	t_list *current;
 
-	temp = ft_create_elem(data);
-	str = *list;
-	if (temp)
+	current = begin_list;
+	while (current)
 	{
-		temp->next = str;
+		(*f)(current->data);
+		current = current->next;
 	}
 }

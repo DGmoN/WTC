@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_front.c                               :+:      :+:    :+:   */
+/*   args_util.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/28 11:33:42 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/28 12:38:44 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/28 15:25:14 by wgourley          #+#    #+#             */
+/*   Updated: 2018/02/28 16:00:18 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#ifndef ARGS_UTIL_H
+# define ARGS_UTIL_H
 
-void	ft_list_push_front(t_list **list, void *data)
-{
-	t_list *temp;
-	t_list *str;
 
-	temp = ft_create_elem(data);
-	str = *list;
-	if (temp)
-	{
-		temp->next = str;
-	}
-}
+#include "str_util.h"
+
+int		find_index_of_arg(char **args, int len, char *argtext);
+int		parse_num_arg(int len, char **args, char *flag, int base);
+
+#endif
