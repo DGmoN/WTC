@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_util.h                                         :+:      :+:    :+:   */
+/*   str_util.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 15:20:22 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:52:00 by wgourley         ###   ########.fr       */
+/*   Created: 2018/02/25 13:30:57 by wgourley          #+#    #+#             */
+/*   Updated: 2018/03/01 11:31:27 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NUM_UTIL_H
-# define NUM_UTIL_H
+#ifndef STR_UTIL_H
+# define STR_UTIL_H
 
-int	power(int base, int to);
-int	digits_in_num(int num, int base);
-int	is_number_char(char e, int expected_base);
+int		is_numeric(char *e);
+int		is_char_in_str(char e, char *comp, int offset);
+int		str_len(char *e);
+int   str_cmp(char *a, char *b);
+void  ft_putnbr(int numb);
+void  ft_putchar(char e);
+int 	find_first_of(char *e, char *b, int offset);
 
 #endif

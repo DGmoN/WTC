@@ -6,12 +6,12 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 13:27:31 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:42:07 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/01 11:57:17 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "num_util.h"
-#include "str_util.h"
+#include "../nums/nums.h"
+#include "strs.h"
 
 int	is_numeric(char *e)
 {
@@ -20,18 +20,18 @@ int	is_numeric(char *e)
 	index = 0;
 	while (e[index])
 	{
-		if (is_char_in_str(e[index], "0123456789") < 0)
-			return (0);
+		if (is_char_in_str(e[index], "0123456789", 0) < 0)
+			return (-1);
 		index++;
 	}
-	return (1);
+	return (index);
 }
 
-int	is_char_in_str(char e, char *comp)
+int	is_char_in_str(char e, char *comp, int offset)
 {
 	int index;
 
-	index = 0;
+	index = offset;
 	while (comp[index])
 	{
 		if (comp[index] == e)
@@ -39,35 +39,6 @@ int	is_char_in_str(char e, char *comp)
 		index++;
 	}
 	return (-1);
-}
-
-int	str_to_num(char *e, int base, int *set)
-{
-	int len;
-	int index;
-	int ret;
-	int rnum;
-	int neg;
-
-	index = 0;
-	ret = 0;
-	len = str_len(e) - 1;
-	neg = 1;
-	while (e[index])
-	{
-		if (index == 0 && e[index] == '-')
-			neg = -1;
-		else
-		{
-			if (!is_number_char(e[index], base))
-				return (0);
-			rnum = e[index] - '0';
-			ret += (rnum * power(base, len - index));
-		}
-		index++;
-	}
-	*set = ret * neg;
-	return (1);
 }
 
 int	str_len(char *e)
@@ -78,4 +49,44 @@ int	str_len(char *e)
 	while (e[index])
 		index++;
 	return (index);
+}
+
+int	str_cmp(char *a, char *b)
+{
+	int index;
+	int len;
+	int total;
+
+	len = str_len(a);
+	len -= str_len(b);
+	if(len != 0)
+		return (len);
+	index = 0;
+	total = 0;
+	while (a[index] && b[index])
+	{
+		total += a[index] - b[index];
+		index++;
+	}
+	return (total);
+}
+
+int	find_first_of(char *e, char *b, int offset)
+{
+	int count;
+	int comp;
+
+	count = offset;
+	while (e[count])
+	{
+		comp = 0;
+		while (b[comp])
+		{
+			if (b[comp] == e[count])
+				return (count);
+			comp++;
+		}
+		count++;
+	}
+	return (-1);
 }

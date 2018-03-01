@@ -6,12 +6,12 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:22:53 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/27 09:54:01 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/01 11:38:38 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "num_util.h"
-#include "str_util.h"
+#include "../nums/nums.h"
+#include "../strs/strs.h"
 
 int	power(int base, int to)
 {
@@ -51,6 +51,35 @@ int	is_number_char(char e, int expected_base)
 	char	*num_chars;
 
 	num_chars = "0123456789ABCDEF";
-	index = is_char_in_str(e, num_chars);
+	index = is_char_in_str(e, num_chars, 0);
 	return (index < expected_base);
+}
+
+int	str_to_num(char *e, int base, int *set)
+{
+	int len;
+	int index;
+	int ret;
+	int rnum;
+	int neg;
+
+	index = 0;
+	ret = 0;
+	len = str_len(e) - 1;
+	neg = 1;
+	while (e[index])
+	{
+		if (index == 0 && e[index] == '-')
+			neg = -1;
+		else
+		{
+			if (!is_number_char(e[index], base))
+				return (0);
+			rnum = e[index] - '0';
+			ret += (rnum * power(base, len - index));
+		}
+		index++;
+	}
+	*set = ret * neg;
+	return (1);
 }

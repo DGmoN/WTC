@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_disp.h                                         :+:      :+:    :+:   */
+/*   filer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 14:49:26 by wgourley          #+#    #+#             */
-/*   Updated: 2018/02/26 14:52:27 by wgourley         ###   ########.fr       */
+/*   Created: 2018/03/01 11:25:00 by wgourley          #+#    #+#             */
+/*   Updated: 2018/03/01 11:57:50 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STR_DISP_H
-# define STR_DISP_H
+#include "mr_math.h"
+#include "../strs/strs.h"
 
-void	put_char(char e);
-void	put_str(char *e);
-void	put_line(char *e);
-void	put_number(int num, int base);
-#endif
+m_bool	is_whitespace(char e)
+{
+	return ((m_bool)(e == ' ' || e == '\n' || e == '\t'));
+}
+
+m_bool	is_opperation(char e, int (*op)(int, int))
+{
+	int index;
+
+	index = is_char_in_str('e', OPPERATION_SYMBOLS, 0);
+	if (index < 0)
+		return (FALSE);
+	return (TRUE);
+}
