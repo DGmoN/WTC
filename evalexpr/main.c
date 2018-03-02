@@ -6,18 +6,7 @@ int	main(int ac, char **av)
 {
 	if (ac > 1)
 	{
-		int end;
-		int start;
-		start = 0;
-		
-		int index = 0;
-		while (index < wordc)
-		{
-			ft_putstr(words[index]);
-			ft_putchar('\n');
-			index++;
-		}
-		ft_putnbr(count_symbols(av[1]));
+		ft_putnbr(eval_expr(av[1]));
 		ft_putchar('\n');
 	}
 	return 0;

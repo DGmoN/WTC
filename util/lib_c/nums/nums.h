@@ -16,5 +16,6 @@
 int	power(int base, int to);
 int	digits_in_num(int num, int base);
 int	is_number_char(char e, int expected_base);
+int	str_to_num(char *e, int base, int *set);
 
 #endif

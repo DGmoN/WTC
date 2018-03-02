@@ -18,11 +18,11 @@ m_bool	is_whitespace(char e)
 	return ((m_bool)(e == ' ' || e == '\n' || e == '\t'));
 }
 
-m_bool	is_opperation(char e, int (*op)(int, int))
+m_bool	is_opperation_symbol(char e, int (*op)(int, int))
 {
 	int index;
 
-	index = is_char_in_str('e', OPPERATION_SYMBOLS, 0);
+	index = is_char_in_str(e, OPPERATION_SYMBOLS, 0);
 	if (index < 0)
 		return (FALSE);
 	return (TRUE);

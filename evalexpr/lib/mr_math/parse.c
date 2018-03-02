@@ -13,18 +13,6 @@
 #include "mr_math.h"
 #include <stdlib.h>
 
-express *break_uppart(char *e)
-{
-	int index;
-	express *result;
-	int	symbol_count;
-
-	index = 0;
-	symbol_count = count_symbols(e);
-	result = malloc(sizeof(express) * symbol_count);
-
-}
-
 int	count_symbols(char *e)
 {
 	int index;
