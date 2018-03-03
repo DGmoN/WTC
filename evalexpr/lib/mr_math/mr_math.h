@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 11:13:09 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/01 11:44:49 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/03 14:10:34 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MR_MATH_H
 #include "../nums/nums.h"
 # define OPPERATION_SYMBOLS "+-*/%^"
+
+typedef int (*op)(int, int);
 
 typedef enum	e_math_bool
 {
@@ -23,37 +25,30 @@ typedef enum	e_math_bool
 
 typedef enum e_op_prior
 {
-	PARENTHESIES,
 	EXPONENT,
 	MULY_DIV,
 	ADD_SUB
 } 						op_prior;
 
-typedef struct	s_symbol
+typedef	struct	s_artifact
 {
-	int		value;
-	char	*aski;
-	struct s_oppertor	*next;
-}								symbol;
+	char 				*askii;
+	struct s_artifact 	*next;
+	struct s_artifact 	*back;
+}				artifact;
 
-typedef struct	s_oppertor
-{
-	op_prior					priority;
-	int								value;
-	struct	s_symbol	*next;
-	int 						(*operation)(int a, int b);
-}				opperator;
-
-m_bool	is_whitespace(char e);
-int	count_symbols(char *e);
-int eval_expr(char *e);
-int		multiply(int a, int b);
-int		devide(int a, int b);
-int		add(int	a, int b);
-int		subtract(int a, int b);
-int		mod(int	a, int b);
-op_prior get_priority(char e);
-m_bool	is_opperation_symbol(char e, int (*op)(int, int));
-
-
+m_bool		is_whitespace(char e);
+int			count_symbols(char *e);
+int 		eval_expr(char *e);
+int			multiply(int a, int b);
+int			devide(int a, int b);
+int			add(int	a, int b);
+int			subtract(int a, int b);
+int			mod(int	a, int b);
+op_prior 	get_priority(char e);
+char 		*simplify(char *e);
+op			get_op(char e);
+int 		resolve(char *e);
+artifact	*linkify(int count, char **e);
+void 		do_math(artifact *p, artifact *h, artifact *patch);
 #endif

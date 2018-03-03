@@ -6,12 +6,13 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:22:53 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/01 11:38:38 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/03 14:18:18 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../nums/nums.h"
 #include "../strs/strs.h"
+#include <stdlib.h>
 
 int	power(int base, int to)
 {
@@ -73,6 +74,8 @@ int	str_to_num(char *e, int base, int *set)
 			neg = -1;
 		else
 		{
+			if(e[index] < '0')
+				e[index] = '0';
 			if (!is_number_char(e[index], base))
 				return (0);
 			rnum = e[index] - '0';
@@ -82,4 +85,33 @@ int	str_to_num(char *e, int base, int *set)
 	}
 	*set = ret * neg;
 	return (1);
+}
+
+char*	num_to_str(int num, int base, char *set)
+{
+	int index;
+	int len;
+	int ch;
+	int holder;
+	int pow;
+
+	len = digits_in_num(num, base);
+	set = (char *)malloc(sizeof(set) * (len + 1));
+	index = 0;
+	holder = num;
+	while (index < len)
+	{
+		if (holder < 0)
+		{
+			ft_putchar('-');
+			holder *= -1;
+			index = 0;
+		}
+		pow = power(10, (len - index - 1));
+		ch = holder / pow;
+		holder = holder % pow;
+		set[index] = ch + '0';
+		index++;
+	}
+	return (set);
 }
