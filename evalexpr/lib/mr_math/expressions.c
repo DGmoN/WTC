@@ -18,7 +18,7 @@
 
 int eval_expr(char *e)
 {
-	simplify(e);
+	resolve(e);
 }
 
 char *simplify(char *e)
@@ -45,41 +45,33 @@ char *simplify(char *e)
 
 int		resolve(char *e)
 {
-	int			word_count;
-	int			dat[3];
-	artifact	*list;
-	artifact	*holder;
-	artifact	*previos;
-
-	printf("Resloving: %s\n", e);
-	dat[0] = 0;	/* index */
-	dat[1] = 0;
-	dat[2] = count_words(e, " ") - 1;
-	list = linkify(word_count, split(e, " "));
-	while (dat[1] < 3)
+	artifact 	*source;
+	artifact 	*arts;
+	int 		index;
+	
+	index = 0;
+	source = linkify(count_words(e, " "), split(e, " "));
+	arts = source;
+	while (arts->next)
 	{
-		if (dat[0] % (dat[2]) == 0)
+		if (arts->next->type == OPPERATOR)
 		{
-			holder = list;
-			dat[1]++;
+			do_math(arts, arts->next);
+			arts->next = arts->next->next->next;
+			printf("%s\n", arts->askii);
+			arts = source;
 		}
-		if (dat[0] % 2)
-		{
-			printf("Testing phaze: %s, %i\n", holder->askii, dat[1]);
-			if (phaze_match(dat[1], holder->askii[0]))
-			{
-				printf("Phaze match: %i %s\n", dat[1], holder->askii);
-				do_math(previos, holder, holder->next->next);
-				printf("Result: %s\n", previos->askii);
-			}
-		}
-		previos = holder;
-		holder = holder->next;
-		dat[0]++;
+		arts = arts->next;
+		index++;
+	}
+	while (source != 0)
+	{
+		printf("%s->", source->askii);
+		source = source->next;
 	}
 }
 
-void	do_math(artifact *p, artifact *c, artifact *patch)
+void	do_math(artifact *p, artifact *c)
 {
 	int num1;
 	int num2;
@@ -91,26 +83,6 @@ void	do_math(artifact *p, artifact *c, artifact *patch)
 	str_to_num(c->next->askii, 10, &num2);
 	result = opper(num2, num1);
 	p->askii = num_to_str(result, 10, p->askii);
-//	p->next = patch;
 }
 
-artifact	*linkify(int count, char **e)
-{
-	int index;
-	artifact *last;
-	artifact *current;
 
-	index = 0;
-	while (index < count)
-	{
-		current = malloc(sizeof(current));
-		current->askii = e[index];
-		current->next = 0;
-		current->back = 0;
-		if(last)
-			current->next = last;
-		last = current;
-		index++;
-	}
-	return (current);
-}

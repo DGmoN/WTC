@@ -23,18 +23,17 @@ typedef enum	e_math_bool
 	TRUE
 }				m_bool;
 
-typedef enum e_op_prior
+typedef enum 	e_type
 {
-	EXPONENT,
-	MULY_DIV,
-	ADD_SUB
-} 						op_prior;
+	VALUE,
+	OPPERATOR
+}				a_type;
 
 typedef	struct	s_artifact
 {
-	char 				*askii;
+	char	*askii;
+	a_type	type;
 	struct s_artifact 	*next;
-	struct s_artifact 	*back;
 }				artifact;
 
 m_bool		is_whitespace(char e);
@@ -45,10 +44,14 @@ int			devide(int a, int b);
 int			add(int	a, int b);
 int			subtract(int a, int b);
 int			mod(int	a, int b);
-op_prior 	get_priority(char e);
+
 char 		*simplify(char *e);
 op			get_op(char e);
 int 		resolve(char *e);
+void 		do_math(artifact *p, artifact *h);
+
+artifact	*create_artifact(char *askii);
 artifact	*linkify(int count, char **e);
-void 		do_math(artifact *p, artifact *h, artifact *patch);
+void		replace_artifacts(artifact *start, int len, artifact *with);
+artifact	*free_artifacts(artifact *free, int limit);
 #endif

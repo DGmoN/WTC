@@ -113,5 +113,6 @@ char*	num_to_str(int num, int base, char *set)
 		set[index] = ch + '0';
 		index++;
 	}
+	set[index] = 0;
 	return (set);
 }

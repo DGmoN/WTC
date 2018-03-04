@@ -20,7 +20,6 @@ SRC = $(shell find . -name "*.c")
 
 all: $(SRC) $(OUTDIR)
 	@rm -Rf $(DLIB_DIR)
-	@mkdir -p $(DLIB_DIR)
 	@echo "Created lib dir"
 	@cp -Rf $(SLIB_DIR) $(DLIB_DIR)
 	@echo "coppied lib"
@@ -34,7 +33,6 @@ all: $(SRC) $(OUTDIR)
 
 weak: $(SRC) $(OUTDIR)
 	@rm -Rf $(DLIB_DIR)
-	@mkdir -p $(DLIB_DIR)
 	@echo "Created lib dir"
 	@cp -Rf $(SLIB_DIR) $(DLIB_DIR)
 	@echo "coppied lib"

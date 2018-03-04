@@ -17,7 +17,7 @@
 int is_a(char e, char *delims)
 {
 	int index;
-
+	
 	index = 0;
 	while (delims[index])
 	{
