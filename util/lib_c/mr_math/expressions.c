@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 10:09:47 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/03 14:32:21 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 17:00:30 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,84 @@
 #include <stdlib.h>
 #include "../str_split/str_split.h"
 #include "../strs/strs.h"
+#include "../nums/nums.h"
 
-
-int eval_expr(char *e)
+int		eval_expr(char *e)
 {
-	resolve(e);
+	int hold;
+
+	str_to_num(simplify(e), 10, &hold);
+	return (hold);
 }
 
-char *simplify(char *e)
+char	*simplify(char *e)
 {
-	char *h_res;
-	char *holder;
-	int ret;
-	int start;
-	int end;
+	char	*h_res;
+	char	*holder;
+	char	*subject;
+	int		i[2];
 
-	printf("%s\n", e);
-	end = 0;
-	start = 0;
-	while (block_bounds(e, "()", &start, &end))
+	i[0] = 0;
+	i[1] = 0;
+	subject = e;
+	while (block_bounds(subject, "()", &i[0], &i[1]))
 	{
-		holder = sub_str(e, start, end);
-		printf("\t%s\n\t", holder);
+		holder = sub_str(subject, i[0], i[1]);
 		h_res = simplify(trim(holder, 1, 1));
-		ret = resolve(h_res);
+		subject = replace(subject, holder, h_res);
 	}
-	resolve(e);
-	return (trim(holder, 1, 1));
+	return (resolve(subject));
 }
 
-int		resolve(char *e)
+int		can_math(int *phaze, artifact *current, artifact *prior)
 {
-	artifact 	*source;
-	artifact 	*arts;
-	int 		index;
-	
-	index = 0;
-	source = linkify(count_words(e, " "), split(e, " "));
-	arts = source;
-	while (arts->next)
+	if (phaze_match(*phaze, current->askii[0]) && prior)
 	{
-		if (arts->next->type == OPPERATOR)
+		do_math(prior, current);
+		prior->next = current->next->next;
+		*phaze = 0;
+		return (1);
+	}
+	return (0);
+}
+
+char	*resolve(char *e)
+{
+	artifact	*arties[3];
+	int			phaze;
+
+	arties[0] = linkify(count_words(e, " "), split(e, " "));
+	phaze = 0;
+	while (phaze < 3)
+	{
+		arties[1] = arties[0];
+		while (count_links(arties[1]) > 1)
 		{
-			do_math(arts, arts->next);
-			arts->next = arts->next->next->next;
-			printf("%s\n", arts->askii);
-			arts = source;
+			if (arties[1]->next->type == OPPERATOR)
+				arties[2] = arties[1];
+			else
+			{
+				if (can_math(&phaze, arties[1], arties[2]))
+					arties[1] = arties[0];
+				arties[2] = 0;
+			}
+			arties[1] = arties[1]->next;
 		}
-		arts = arts->next;
-		index++;
+		phaze++;
 	}
-	while (source != 0)
-	{
-		printf("%s->", source->askii);
-		source = source->next;
-	}
+	return (arties[0]->askii);
 }
 
 void	do_math(artifact *p, artifact *c)
 {
-	int num1;
-	int num2;
-	int result;
-	op opper;
+	int		num1;
+	int		num2;
+	int		result;
+	t_op	opper;
 
 	opper = get_op(c->askii[0]);
 	str_to_num(p->askii, 10, &num1);
 	str_to_num(c->next->askii, 10, &num2);
-	result = opper(num2, num1);
+	result = opper(num1, num2);
 	p->askii = num_to_str(result, 10, p->askii);
 }
-
-

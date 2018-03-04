@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 07:38:30 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/03 12:01:17 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 14:39:40 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	first_index_of(char *str, char find, int offset)
 	int index;
 
 	index = offset;
-	while(str[index])
+	while (str[index])
 	{
 		if (str[index] == find)
 			return (index);
@@ -26,13 +26,13 @@ int	first_index_of(char *str, char find, int offset)
 	}
 	return (-1);
 }
-	
+
 int	last_index_of(char *str, char find, int offset)
 {
 	int index;
 
 	index = (str_len(str) - offset);
-	while(index > -1)
+	while (index > -1)
 	{
 		if (str[index] == find)
 			return (index + 1);
@@ -41,7 +41,7 @@ int	last_index_of(char *str, char find, int offset)
 	return (-1);
 }
 
-int block_bounds(char *subj, char *limiters, int *start, int *end)
+int	block_bounds(char *subj, char *limiters, int *start, int *end)
 {
 	int index;
 	int stack;

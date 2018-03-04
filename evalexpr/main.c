@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 08:37:43 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/03 10:10:48 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 14:06:41 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(int ac, char **av)
 		ft_putnbr(eval_expr(av[1]));
 		ft_putchar('\n');
 	}
-	return 0;
+	return (0);
 }

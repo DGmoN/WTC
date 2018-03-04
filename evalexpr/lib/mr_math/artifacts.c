@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   artifacts.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/04 14:48:18 by wgourley          #+#    #+#             */
+/*   Updated: 2018/03/04 17:11:59 by wgourley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mr_math.h"
 #include "../strs/strs.h"
 #include <stdlib.h>
+
 artifact	*create_artifact(char *askii)
 {
 	artifact *ret;
-	
+
 	ret = malloc(sizeof(artifact));
-	ret->type = (a_type)(is_char_in_str(askii[0], OPPERATION_SYMBOLS, 0) >= 0);
+	ret->type = (type)(is_char_in_str(askii[0], OPPERATION_SYMBOLS, 0) >= 0);
 	ret->askii = askii;
 	ret->next = 0;
 	return (ret);
@@ -14,40 +27,38 @@ artifact	*create_artifact(char *askii)
 
 artifact	*linkify(int count, char **e)
 {
-	int index;
-	artifact *current;
-	artifact *last;
-	
+	int			index;
+	artifact	*current;
+	artifact	*last;
+	artifact	*first;
+
 	index = 0;
 	last = 0;
+	first = 0;
 	while (index < count)
 	{
 		current = create_artifact(e[index]);
 		if (last)
-			current->next = last;
+			last->next = current;
 		last = current;
+		if (!first)
+			first = last;
 		index++;
 	}
-	
-	return (current);
+	return (first);
 }
 
-void	replace_artifacts(artifact *start, int len, artifact *with)
+int			count_links(artifact *source)
 {
-	artifact *end;
-	
-	end = free_artifacts(start->next, len);
-	start->next = with;
-	with->next = end;
-}
+	int			count;
+	artifact	*hold;
 
-/* returns the last unlinked artifact */
-artifact	*free_artifacts(artifact *free, int limit)
-{
-	artifact *hold;
-	if (limit == 0)
-		hold = free->next;
-	else
-		hold = free_artifacts(free->next, limit - 1);
-	return hold;
+	count = 0;
+	hold = source;
+	while (hold)
+	{
+		count++;
+		hold = hold->next;
+	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 15:22:53 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/03 14:18:18 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 15:30:43 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../strs/strs.h"
 #include <stdlib.h>
 
-int	power(int base, int to)
+int		power(int base, int to)
 {
 	int x;
 	int ret;
@@ -29,7 +29,7 @@ int	power(int base, int to)
 	return (ret);
 }
 
-int	digits_in_num(int num, int base)
+int		digits_in_num(int num, int base)
 {
 	int remainder;
 	int index;
@@ -46,7 +46,7 @@ int	digits_in_num(int num, int base)
 	return (index);
 }
 
-int	is_number_char(char e, int expected_base)
+int		is_number_char(char e, int expected_base)
 {
 	int		index;
 	char	*num_chars;
@@ -56,38 +56,36 @@ int	is_number_char(char e, int expected_base)
 	return (index < expected_base);
 }
 
-int	str_to_num(char *e, int base, int *set)
+int		str_to_num(char *e, int base, int *set)
 {
-	int len;
-	int index;
-	int ret;
+	int i[5];
 	int rnum;
 	int neg;
 
-	index = 0;
-	ret = 0;
-	len = str_len(e) - 1;
+	i[0] = 0;
+	i[2] = 0;
+	i[1] = str_len(e) - 1;
 	neg = 1;
-	while (e[index])
+	while (e[i[0]])
 	{
-		if (index == 0 && e[index] == '-')
+		if (i[0] == 0 && e[i[0]] == '-')
 			neg = -1;
 		else
 		{
-			if(e[index] < '0')
-				e[index] = '0';
-			if (!is_number_char(e[index], base))
+			if (e[i[0]] < '0')
+				e[i[0]] = '0';
+			if (!is_number_char(e[i[0]], base))
 				return (0);
-			rnum = e[index] - '0';
-			ret += (rnum * power(base, len - index));
+			rnum = e[i[0]] - '0';
+			i[2] += (rnum * power(base, i[1] - i[0]));
 		}
-		index++;
+		i[0]++;
 	}
-	*set = ret * neg;
+	*set = i[2] * neg;
 	return (1);
 }
 
-char*	num_to_str(int num, int base, char *set)
+char	*num_to_str(int num, int base, char *set)
 {
 	int index;
 	int len;
@@ -99,14 +97,13 @@ char*	num_to_str(int num, int base, char *set)
 	set = (char *)malloc(sizeof(set) * (len + 1));
 	index = 0;
 	holder = num;
+	if (holder < 0)
+	{
+		ft_putchar('-');
+		holder *= -1;
+	}
 	while (index < len)
 	{
-		if (holder < 0)
-		{
-			ft_putchar('-');
-			holder *= -1;
-			index = 0;
-		}
 		pow = power(10, (len - index - 1));
 		ch = holder / pow;
 		holder = holder % pow;

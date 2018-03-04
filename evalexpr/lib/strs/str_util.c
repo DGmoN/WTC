@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 13:27:31 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/01 11:57:17 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 14:06:21 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	str_cmp(char *a, char *b)
 
 	len = str_len(a);
 	len -= str_len(b);
-	if(len != 0)
+	if (len != 0)
 		return (len);
 	index = 0;
 	total = 0;

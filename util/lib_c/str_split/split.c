@@ -6,7 +6,7 @@
 /*   By: wgourley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 07:19:06 by wgourley          #+#    #+#             */
-/*   Updated: 2018/03/03 09:31:00 by wgourley         ###   ########.fr       */
+/*   Updated: 2018/03/04 16:21:42 by wgourley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "str_split.h"
 #include "../strs/strs.h"
 
-int is_a(char e, char *delims)
+int		is_a(char e, char *delims)
 {
 	int index;
-	
+
 	index = 0;
 	while (delims[index])
 	{
@@ -30,13 +30,13 @@ int is_a(char e, char *delims)
 	return (0);
 }
 
-int find_word(char *sentecnt, char* delims, int *start, int *end, int offset)
+int		find_word(char *sentecnt, char *delims, int *bounds)
 {
 	int index;
 	int seeking;
 
-	index = offset;
-	*start = index;
+	index = bounds[1];
+	bounds[0] = index;
 	seeking = 0;
 	while (sentecnt[index])
 	{
@@ -44,77 +44,69 @@ int find_word(char *sentecnt, char* delims, int *start, int *end, int offset)
 		{
 			if (seeking)
 			{
-				*end = index;
+				bounds[1] = index;
 				return (1);
 			}
-			*start = index;
+			bounds[0] = index;
 		}
-		else
+		else if (!seeking)
 		{
-			if(!seeking)
-			{
-				seeking = 1;
-				*start = index;
-			}
+			seeking = 1;
+			bounds[0] = index;
 		}
 		index++;
 	}
 	return (0);
 }
 
-int find_item(char *sentence, char *word, int *start, int *end)
+int		find_item(char *sentence, char *word, int *start, int *end)
 {
 	int index;
 	int windex;
-	int reading;
 
 	index = *end;
 	windex = 0;
-	reading = 0;
 	while (sentence[index])
 	{
 		if (sentence[index] == word[windex])
 		{
-			if (!reading)
+			if (!windex)
 				*start = index;
-			reading = 1;
 			windex++;
 		}
 		else
 		{
-			if (reading)
-			{
-				*end = index - 2;
-				return (1);
-			}
-			reading = 0;
+			if (word[windex] == 0)
+				break ;
 			windex = 0;
 		}
 		index++;
 	}
+	*end = index;
+	if (word[windex] == 0)
+		return (1);
 	return (0);
 }
 
-char **split(char *str, char *delims)
+char	**split(char *str, char *delims)
 {
-	int   start;
-	int   end;
-	char  **ret;
-	int   index;
+	int		i[2];
+	char	**ret;
+	int		index;
 
 	ret = malloc((count_words(str, delims) + 1) * sizeof(char**));
+	i[0] = 0;
+	i[1] = 0;
 	index = 0;
-	start = 0;
-	end = 0;
-	while (find_word(str, delims, &start, &end, end))
+	while (find_word(str, delims, i))
 	{
-		ret[index++] = sub_str(str, start, end);
+		ret[index++] = sub_str(str, i[0], i[1]);
 	}
-	ret[index] = sub_str(str, end, str_len(str));
+	ret[index] = sub_str(str, i[1], str_len(str));
 	return (ret);
 }
 
-int	count_words(char *e, char *delims)
+int		count_words(char *e, char *delims)
 {
 	int index;
 	int count;
